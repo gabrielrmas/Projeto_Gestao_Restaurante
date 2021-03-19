@@ -1,1 +1,1 @@
-Programa
+Projeto de Gestão de Restaurante utilizando Spring e Angular.
