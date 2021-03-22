@@ -1,9 +1,19 @@
 package com.gabrielrmas.model;
 
-public class Item {
+import javax.persistence.*;
+import javax.validation.constraints.*;
 
+@Entity
+public class Item {
+	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
+	@NotBlank
 	private String nome;
-	private float preco;
+	
+	@Min(0)
+	private Float preco;
 	
 	
 	public String getNome() {
@@ -14,12 +24,21 @@ public class Item {
 		this.nome = nome;
 	}
 	
-	public float getPreco() {
+	public Float getPreco() {
 		return preco;
 	}
 	
-	public void setPreco(float preco) {
+	public void setPreco(Float preco) {
 		this.preco = preco;
 	}
+	
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
 	
 }
