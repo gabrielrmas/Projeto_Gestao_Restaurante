@@ -16,16 +16,16 @@ import com.gabrielrmas.service.ItemService;
 public class ItemController {
 	
 	@Autowired
-	private ItemService item;
+	private ItemService itemService;
 	
 	@PostMapping
-	public String salvar(@RequestBody Item item) { // request body necessário pra receber as informações em json (body/raw - postman)
-		this.item.saveItem(item);
-		return "redirect:/item";
+	public String salvar(@RequestBody Item item) { 
+		this.itemService.saveItem(item);
+		return "item ok";
 	}
 	
-	@GetMapping("/{name}") // aqui eu digo q a variável na url vem com o /name
-	public Item getItem(@PathVariable String name) { // seta o caminho do get para o nome dado pelo postman
-		return item.getItem(name);
+	@GetMapping("/{name}") 
+	public Item getItem(@PathVariable String name) { 
+		return itemService.getItem(name);
 	}
 }

@@ -8,6 +8,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.validation.constraints.Min;
 
 
 
@@ -17,7 +18,10 @@ public class Mesa {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer numeroMesa;
+	
+	@Min(0)
 	private Float valorTotal;
+	
 	@OneToMany(cascade = CascadeType.ALL)
 	private List<Pedido> pedidos;
 	
@@ -38,20 +42,5 @@ public class Mesa {
 		this.numeroMesa = numeroMesa;
 	}
 	
-	public Float getValorTotal() {
-		valorTotal = (float) 0;
-		for (Pedido pedido : pedidos) { // pedido em amarelo vira todos os pedidos da iteração (invés de pedido 01 vira pedido)
-			if ((pedido.getSituacao() == "Concluído") || pedido.getSituacao() == "Finalizado") {
-			valorTotal += pedido.getValor();}
-			
-		}
-		
-		return valorTotal;
-	}
-	
-	public Float porcentagemGarcom(Float porcentagem) {
-		return getValorTotal() * porcentagem;
-		
-	}	
 	
 }

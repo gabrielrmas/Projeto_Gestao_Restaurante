@@ -19,4 +19,5 @@ public class ItemService {
 	public Item getItem(String nome) {
 		return itemRepository.findByNome(nome);
 	}
+	
 }

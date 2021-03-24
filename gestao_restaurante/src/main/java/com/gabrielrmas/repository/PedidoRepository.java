@@ -8,4 +8,5 @@ import com.gabrielrmas.model.Pedido;
 @Repository
 public interface PedidoRepository extends JpaRepository<Pedido, Long> {
 	
+	public Pedido findByNumeroPedido(Long numeroPedido);
 }

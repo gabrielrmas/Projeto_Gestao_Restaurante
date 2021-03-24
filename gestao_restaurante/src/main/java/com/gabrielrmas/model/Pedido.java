@@ -7,6 +7,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotBlank;
 
 @Entity
 public class Pedido {
@@ -14,14 +16,18 @@ public class Pedido {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long numeroPedido;
+	
 	@OneToOne(targetEntity = Item.class) // inves de usar joincolumn e especificar a coluna
-	private Item item;                   
-	private String situacao = "Novo";
-	private String detalhar;
-	private Integer quantidade;
+	private Item item;
 	
 	@Enumerated(EnumType.STRING)
-	private Situacoes newSituacao;
+	private Situacoes situacao = Situacoes.NOVO;
+	
+	private String detalhar;
+	
+	@Min(1)
+	private Integer quantidade;
+	
 	
 	public Item getItem() {
 		return item;
@@ -38,18 +44,9 @@ public class Pedido {
 	public void setDetalhar(String detalhar) {
 		this.detalhar = detalhar;
 	}
-	
-	
-	public Float getValor() {
-		return quantidade*item.getPreco(); // recebe o preço do alimento pelo BD
-	}
 
 	public Long getNumeroPedido() {
 		return numeroPedido;
-	}
-	
-	public void setNumeroPedido(Long numeroPedido) {
-		this.numeroPedido = numeroPedido;
 	}
 	
 	public Integer getQuantidade() {
@@ -60,11 +57,11 @@ public class Pedido {
 		this.quantidade = quantidade;
 	}
 	
-	public void setSituacao(String novaSituacao) {
-		this.situacao = novaSituacao;
+	public void setSituacao(Situacoes novo) {
+		this.situacao = novo;
 	}
 	
-	public String getSituacao() {
+	public Situacoes getSituacao() {
 		return situacao;
 		
 	}
