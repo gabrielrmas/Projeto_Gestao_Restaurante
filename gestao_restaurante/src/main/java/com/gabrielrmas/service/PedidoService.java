@@ -38,7 +38,7 @@ public class PedidoService {
 	
 	public Float getValor(Pedido pedido) {
 		Item item = pedido.getItem();
-		return pedido.getQuantidade()*item.getPreco(); // recebe o preço do alimento pelo BD
+		return pedido.getQuantidade()*item.getPreco();
 	}
 	
 }

@@ -27,9 +27,9 @@ public class MesaService {
 		return mesaRepository.findByNumeroMesa(numeroMesa);
 	}
 	
-	public Float getValorTotal(Mesa mesa) {
+	public Float getValorTotal(Integer numeroMesa) {
 		float valorTotal = 0;
-		for (Pedido pedido : mesa.getPedidos()) { 
+		for (Pedido pedido : mesaRepository.findByNumeroMesa(numeroMesa).getPedidos()) { 
 			if ((pedido.getSituacao() == Situacoes.CONCLUIDO) || pedido.getSituacao() == Situacoes.FINALIZADO) {
 			valorTotal += pedidoService.getValor(pedido);
 			}
@@ -40,5 +40,8 @@ public class MesaService {
 	public List<Pedido> listPedidos(Integer numeroMesa){ //não está funcionando
 		return mesaRepository.findByNumeroMesa(numeroMesa).getPedidos();
 	}
-		
+	
+	public List<Mesa> getMesas() {
+		return mesaRepository.findAll();
+	}
 }
