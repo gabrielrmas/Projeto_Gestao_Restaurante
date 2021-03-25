@@ -1,1 +1,1 @@
-Projeto de Gestão de Restaurante utilizando Spring e Angular.
+Back end de um projeto de Gestão de Restaurante utilizando Spring.
